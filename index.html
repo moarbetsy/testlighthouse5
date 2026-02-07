@@ -5,101 +5,125 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- 
-  PERFORMANCE & SECURITY CONFIGURATION
-  ====================================
-  1. No external CSS frameworks (Tailwind/Bootstrap) to ensure <50ms FCP.
-  2. All images are Data URIs (SVGs) to prevent 404s and reduce HTTP requests.
-  3. Critical CSS is inlined for instant render.
+  PERFORMANCE & PRELOADING
+  Preload critical fonts and hints for performance 
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
-  CSP NOTE:
-  For this single-file template, we use 'unsafe-inline' for scripts to allow 
-  you to copy/paste freely. For production, move JS to an external file 
-  or calculate the SHA-384 hash of the script block.
+  <!-- 
+  SECURITY: CONTENT SECURITY POLICY
+  Platform: Universal Static Hosting
+  Limitation: Cannot pre-calculate SHA-384 hash for the script below during generation 
+              because exact byte match is required.
+  Workaround: script-src 'unsafe-inline' is enabled for this demo to ensure functionality.
+  Production Action: Run the command below, get the hash, and replace 'unsafe-inline'.
+  Command: echo -n "CONTENT_OF_SCRIPT_TAG" | openssl dgst -sha384 -binary | openssl base64
   -->
   <meta http-equiv="Content-Security-Policy" 
         content="default-src 'self'; 
-                 style-src 'self' 'unsafe-inline'; 
                  script-src 'self' 'unsafe-inline'; 
-                 img-src 'self' data:; 
+                 style-src 'self' 'unsafe-inline'; 
+                 img-src 'self' data: https:; 
                  font-src 'self' data:; 
                  connect-src 'self'; 
                  base-uri 'self'; 
                  form-action 'self'">
 
-  <!-- SEO Meta Tags -->
-  <title>PromptFrame | Premium Web Templates for LLM Generation</title>
-  <meta name="description" content="High-precision, token-optimized HTML/CSS templates designed to give LLMs perfect context. Build production-ready websites with AI in seconds.">
-  <link rel="canonical" href="https://promptframe.io">
-  
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="PromptFrame | The LLM-Ready Template Library">
-  <meta property="og:description" content="Stop fighting hallucinations. Start with perfect semantic structure.">
-  <meta property="og:url" content="https://promptframe.io">
-  <meta property="og:image" content="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
+  <!-- SEO META -->
+  <title>PromptUI | Premium Website Templates for LLM Generation</title>
+  <meta name="description" content="High-fidelity, token-optimized HTML/CSS templates designed to be pasted into ChatGPT, Claude, and Gemini for perfect website generation.">
+  <link rel="canonical" href="https://example.com/">
+  <meta name="robots" content="index, follow">
 
-  <!-- Structured Data (Product) -->
+  <!-- OPEN GRAPH -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PromptUI - Templates for the AI Era">
+  <meta property="og:description" content="Stop fighting the context window. Use our semantic primitives to build high-end sites with LLMs 10x faster.">
+  <meta property="og:image" content="https://example.com/og.jpg">
+
+  <!-- STRUCTURED DATA -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "PromptFrame",
-    "url": "https://promptframe.io",
-    "logo": "https://promptframe.io/logo.png",
-    "sameAs": ["https://twitter.com/promptframe"],
-    "description": "Premium HTML templates optimized for Large Language Model code generation."
+    "@type": "WebSite",
+    "name": "PromptUI",
+    "url": "https://example.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://example.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
   }
   </script>
 
   <style>
     /* 
-    CORE DESIGN SYSTEM 
-    Theme: "Deep Space" (High contrast, premium developer aesthetic)
-    ACCESSIBILITY NOTE: Colors tuned for WCAG AA compliance (4.5:1 min ratio)
+    CRITICAL CSS 
+    Variables & Reset 
     */
     :root {
-      --bg-body: #0B0F19;
-      --bg-card: #111827;
-      --bg-card-hover: #1F2937;
+      /* Palette: Slate Dark Mode (Safe for WCAG AA) */
+      --bg-body: #020617;       /* Slate 950 */
+      --bg-card: #0f172a;       /* Slate 900 */
+      --bg-highlight: #1e293b;  /* Slate 800 */
       
-      --text-primary: #F9FAFB; /* Gray 50 */
-      --text-secondary: #D1D5DB; /* Gray 300 - Ratio ~10:1 on bg-body */
-      --text-muted: #9CA3AF;    /* Gray 400 - Ratio ~7:1 on bg-body */
+      --text-main: #f8fafc;     /* Slate 50 (16:1 contrast) */
+      --text-muted: #cbd5e1;    /* Slate 300 (8.9:1 contrast - PASS) */
+      --text-accent: #818cf8;   /* Indigo 400 */
       
-      --accent-primary: #38BDF8; /* Sky 400 */
-      --accent-glow: rgba(56, 189, 248, 0.15);
-      --border-color: #374151;
+      --border-subtle: #1e293b;
+      --border-active: #3730a3;
       
-      --font-main: system-ui, -apple-system, sans-serif;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --primary: #6366f1;       /* Indigo 500 */
+      --primary-hover: #4f46e5;
+      
+      --glow: 0 0 80px -20px rgba(99, 102, 241, 0.25);
     }
 
-    /* Reset & Base */
+    /* Reset */
     *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     
     body {
       margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-body);
-      color: var(--text-primary);
-      font-family: var(--font-main);
+      color: var(--text-main);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Typography */
-    h1, h2, h3 {
-      line-height: 1.1;
-      margin-top: 0;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
+    /* Accessibility: Focus States */
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 4px;
+      border-radius: 2px;
     }
-    
-    h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; }
-    h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
-    h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
-    p { margin-bottom: 1.5rem; color: var(--text-secondary); }
 
-    /* Utilities */
+    /* Accessibility: Skip Link */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1rem;
+      z-index: 1000;
+      text-decoration: none;
+      font-weight: bold;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* Typography */
+    h1, h2, h3 { line-height: 1.1; margin-top: 0; letter-spacing: -0.02em; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; }
+    h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 1rem; }
+    h3 { font-size: 1.25rem; font-weight: 600; color: var(--text-main); }
+    p { margin-bottom: 1.5rem; color: var(--text-muted); max-width: 65ch; }
+    
+    /* Layout Utilities */
     .container {
       width: 100%;
       max-width: 1200px;
@@ -113,437 +137,427 @@
     .flex-col { flex-direction: column; }
     .justify-between { justify-content: space-between; }
     .gap-4 { gap: 1rem; }
-    .text-center { text-align: center; }
     .mt-4 { margin-top: 4rem; }
-    .sr-only {
-      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-      overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
-    }
+    .mb-4 { margin-bottom: 4rem; }
 
-    /* Navigation */
-    .nav-header {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border-color);
-      position: sticky;
-      top: 0;
-      background: rgba(11, 15, 25, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-    }
-    
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      text-decoration: none;
-      color: var(--text-primary);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      margin-left: 2rem;
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    
-    .nav-links a:hover { color: var(--accent-primary); }
-
-    /* Hero Section */
-    .hero {
-      padding: 6rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .gradient-text {
-      background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      /* Fallback for contrast */
-      color: #fff; 
-    }
-    
-    .hero-sub {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin: 1.5rem auto 2.5rem;
-      color: var(--text-secondary); /* Explicitly set high contrast color */
-    }
-
-    /* Buttons */
+    /* Components */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem 2rem;
+      padding: 0.75rem 1.5rem;
       border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.2s var(--ease-out);
+      transition: all 0.2s ease;
       cursor: pointer;
-    }
-    
-    .btn-primary {
-      background: var(--text-primary);
-      color: var(--bg-body);
       border: 1px solid transparent;
-    }
-    
-    .btn-primary:hover {
-      background: #e5e7eb;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
-    }
-    
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid var(--border-color);
-    }
-    
-    .btn-secondary:hover {
-      border-color: var(--text-secondary);
-      background: rgba(255,255,255,0.05);
+      min-height: 44px; /* Touch target */
+      min-width: 44px;
     }
 
-    /* Feature Cards */
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39);
+    }
+    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+    .btn-outline:hover {
+      border-color: var(--text-main);
+      color: var(--text-main);
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 50;
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .nav-inner { height: 70px; }
+    .logo { font-weight: 800; font-size: 1.5rem; color: white; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+    
+    /* Hero Section */
+    .hero {
+      padding-top: 180px;
+      padding-bottom: 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .tagline {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 99px;
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--text-accent);
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    /* Product Cards */
     .card {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 2rem;
+      border: 1px solid var(--border-subtle);
       border-radius: 12px;
-      transition: transform 0.2s, border-color 0.2s;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
     }
-    
     .card:hover {
-      border-color: var(--accent-primary);
+      border-color: var(--border-active);
       transform: translateY(-4px);
-      box-shadow: 0 0 30px var(--accent-glow);
+    }
+    .card-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--bg-highlight);
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border-subtle);
+    }
+    .card-meta {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      color: var(--text-accent);
+    }
+    .card-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
     }
     
-    .icon-box {
+    /* Code Snippet visual */
+    .code-block {
+      background: #000;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: #a5b4fc;
+      opacity: 0.7;
+      text-align: left;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    /* Features Section */
+    .feature-icon {
       width: 48px;
       height: 48px;
-      background: rgba(56, 189, 248, 0.1);
+      background: var(--bg-highlight);
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
-      color: var(--accent-primary);
+      margin-bottom: 1rem;
+      color: var(--primary);
     }
 
-    /* Preview Section */
-    .code-preview {
-      background: #000;
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 1.5rem;
-      font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
-      color: #a5b4fc;
-      overflow-x: auto;
-      margin-top: 2rem;
-      text-align: left;
-    }
-    
-    .token-highlight { color: #34d399; }
-    
     /* Footer */
     footer {
-      border-top: 1px solid var(--border-color);
+      border-top: 1px solid var(--border-subtle);
       padding: 4rem 0;
-      margin-top: 6rem;
+      margin-top: 4rem;
       color: var(--text-muted);
+      font-size: 0.9rem;
     }
 
-    /* Accessibility Focus */
-    :focus-visible {
-      outline: 2px solid var(--accent-primary);
-      outline-offset: 4px;
-    }
-
-    /* Mobile Responsive */
+    /* Mobile Menu */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       h1 { font-size: 2.5rem; }
-      .grid-3 { grid-template-columns: 1fr; }
     }
-
-    /* Reduced Motion */
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
+    
+    /* Print styles */
+    @media print {
+      body { background: white; color: black; }
+      .hero::before { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Skip link for keyboard users -->
-  <a href="#main" class="skip-link btn-primary" style="position: absolute; top: -100px; z-index: 200;">Skip to Content</a>
+  <a href="#main" class="skip-link">Skip to main content</a>
 
-  <header class="nav-header">
-    <div class="container flex justify-between">
-      <a href="/" class="logo">
-        <!-- SVG Logo Icon -->
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        PromptFrame
-      </a>
-      <nav class="nav-links">
-        <a href="#features">Why Semantic?</a>
-        <a href="#templates">Templates</a>
-        <a href="#pricing">Pricing</a>
-        <a href="https://github.com" aria-label="GitHub Profile">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.665-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.285 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-            </svg>
+  <header>
+    <div class="container">
+      <div class="flex justify-between nav-inner">
+        <a href="/" class="logo" aria-label="PromptUI Home">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 16H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          PromptUI
         </a>
-      </nav>
+        <nav class="nav-links flex gap-4">
+          <a href="#templates" class="btn btn-outline" style="border:none">Templates</a>
+          <a href="#how-it-works" class="btn btn-outline" style="border:none">Methodology</a>
+          <a href="#pricing" class="btn btn-primary">Get Access</a>
+        </nav>
+      </div>
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     
     <!-- HERO SECTION -->
     <section class="hero">
-      <!-- Abstract Background SVG -->
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.1; pointer-events: none;">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
-
       <div class="container">
-        <div class="hero-content">
-          <!-- Text is Cyan on Dark Blue (Ratio ~6.8:1) -->
-          <span style="color: var(--accent-primary); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.875rem;">For GPT-4, Claude 3.5 & DeepSeek</span>
-          <h1 class="gradient-text" style="margin-top: 1rem;">Stop fixing AI code.<br>Start giving it better context.</h1>
-          <p class="hero-sub">
-            Premium, semantically perfect HTML templates designed to maximize LLM performance. 
-            Feed the model our "Golden Context" structures and get production-ready websites in one shot.
-          </p>
-          <div class="flex justify-between" style="justify-content: center; gap: 1rem;">
-            <a href="#templates" class="btn btn-primary">Browse Templates</a>
-            <a href="#how-it-works" class="btn btn-secondary">See How It Works</a>
+        <span class="tagline">v2.0 Now Available: Claude 3.5 & GPT-4o Optimized</span>
+        <h1>Build Websites with LLMs<br><span style="color: var(--text-accent)">10x Faster.</span></h1>
+        <p style="margin: 1.5rem auto;">
+          Stop wrestling with hallucinations. Our premium, token-optimized HTML/CSS templates provide the perfect semantic context for AI models to generate production-ready code instantly.
+        </p>
+        <div class="flex gap-4" style="justify-content: center; margin-top: 2rem;">
+          <a href="#templates" class="btn btn-primary">Browse Templates</a>
+          <a href="#demo" class="btn btn-outline">View Documentation</a>
+        </div>
+        
+        <!-- Visual Element -->
+        <div style="margin-top: 4rem; border: 1px solid var(--border-subtle); border-radius: 12px; background: var(--bg-card); overflow: hidden; max-width: 800px; margin-left: auto; margin-right: auto;">
+          <div style="background: var(--bg-highlight); padding: 0.75rem; display: flex; gap: 0.5rem;">
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444;"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #eab308;"></div>
+            <div style="width: 12px; height: 12px; border-radius: 50%; background: #22c55e;"></div>
           </div>
-
-          <div class="code-preview">
-            <!-- Fixed contrast for comment: Now #9CA3AF on #000000 (Ratio 7:1) -->
-            <div><span style="color: #9CA3AF">// The "PromptFrame" Difference</span></div>
-            <div>&lt;<span class="token-highlight">section</span> id="pricing" aria-labelledby="pricing-head"&gt;</div>
-            <div>&nbsp;&nbsp;&lt;<span class="token-highlight">h2</span> id="pricing-head"&gt;Transparent Pricing&lt;/h2&gt;</div>
-            <div>&nbsp;&nbsp;&lt;!-- LLM HINT: Use CSS Grid for 3-col layout, gap-8 --&gt;</div>
-            <div>&nbsp;&nbsp;&lt;<span class="token-highlight">div</span> class="grid-3"&gt;...&lt;/div&gt;</div>
-            <div>&lt;/<span class="token-highlight">section</span>&gt;</div>
+          <div style="padding: 2rem; text-align: left; font-family: monospace; color: var(--text-muted); font-size: 0.9rem;">
+            <span style="color: #6366f1">const</span> template = <span style="color: #22c55e">loadTemplate</span>(<span style="color: #e2e8f0">'saas-v1'</span>);<br>
+            <span style="color: #64748b">// Copy this structure into ChatGPT</span><br>
+            <span style="color: #6366f1">return</span> <span style="color: #e2e8f0">`&lt;section class="hero"&gt;...&lt;/section&gt;`</span>;<br>
+            <br>
+            <span style="color: #fff">>> Result: Perfect semantic HTML, zero layout shifts.</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROBLEM / SOLUTION -->
-    <section id="features" class="container mt-4">
-      <div class="text-center" style="margin-bottom: 3rem;">
-        <h2>Engineered for Large Language Models</h2>
-        <p>AI models hallucinate when HTML structure is ambiguous. We fix the input.</p>
-      </div>
-      
-      <div class="grid grid-3">
-        <div class="card">
-          <div class="icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    <!-- VALUE PROPS -->
+    <section id="how-it-works" class="mb-4">
+      <div class="container">
+        <div class="grid grid-3">
+          <div class="card" style="border: none; background: transparent; padding: 0;">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <h3>Token Efficient</h3>
+            <p>Our templates utilize atomic classes and minimal nesting, saving precious context window tokens for your business logic.</p>
           </div>
-          <h3>Token Optimized</h3>
-          <p>We strip 40% of unnecessary markup. Our templates fit efficiently in context windows, leaving more room for your business logic prompts.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="card" style="border: none; background: transparent; padding: 0;">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>Hallucination Proof</h3>
+            <p>Rigid semantic structures prevent LLMs from inventing non-existent CSS classes or breaking layout grids.</p>
           </div>
-          <h3>Lighthouse 100 Baseline</h3>
-          <p>Start with a perfect score. Our templates are pre-optimized for LCP, CLS, and Accessibility. Don't waste prompt tokens asking for optimization.</p>
-        </div>
-
-        <div class="card">
-          <div class="icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          <div class="card" style="border: none; background: transparent; padding: 0;">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+            </div>
+            <h3>Self-Documenting</h3>
+            <p>Every template includes inline comments specifically written to guide the AI on where to insert content.</p>
           </div>
-          <h3>Self-Documenting Classes</h3>
-          <p>We use semantic class names that act as "hints" to the LLM, guiding it to write CSS that matches the intent without hallucinating layout.</p>
         </div>
       </div>
     </section>
 
     <!-- TEMPLATES GRID -->
-    <section id="templates" class="container mt-4">
-      <div class="flex justify-between" style="align-items: flex-end; margin-bottom: 2rem;">
-        <div>
-          <h2>Premium Architectures</h2>
-          <p style="margin-bottom: 0;">Copy, paste, generate.</p>
+    <section id="templates" class="mb-4" style="background: var(--bg-highlight); padding: 4rem 0;">
+      <div class="container">
+        <div class="flex justify-between" style="margin-bottom: 3rem; align-items: flex-end;">
+          <div>
+            <h2>Premium Architecture</h2>
+            <p style="margin-bottom: 0;">Choose the foundation for your next project.</p>
+          </div>
+          <a href="#" class="btn btn-outline">View All</a>
         </div>
-        <a href="#" style="color: var(--accent-primary); text-decoration: none;" aria-label="View all templates">View all &rarr;</a>
-      </div>
 
-      <div class="grid grid-3">
-        <!-- Template 1 -->
-        <article class="card" style="padding: 0; overflow: hidden;">
-          <div style="height: 200px; background: #1f2937; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color);">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-              <line x1="3" y1="9" x2="21" y2="9" />
-              <line x1="9" y1="21" x2="9" y2="9" />
-            </svg>
-          </div>
-          <div style="padding: 1.5rem;">
-            <div class="flex justify-between">
-              <h3>SaaS Dashboard v4</h3>
-              <span style="background: rgba(56, 189, 248, 0.1); color: var(--accent-primary); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">$49</span>
+        <div class="grid grid-3">
+          <!-- Product 1 -->
+          <article class="card">
+            <div class="card-image">
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                <rect x="20" y="20" width="60" height="60" rx="4" stroke="#4f46e5" stroke-width="2"/>
+                <line x1="20" y1="40" x2="80" y2="40" stroke="#4f46e5" stroke-width="2"/>
+                <rect x="30" y="50" width="20" height="20" fill="#4f46e5" fill-opacity="0.2"/>
+              </svg>
             </div>
-            <p>Complex grid layout with sidebar, header, and data-table structures pre-defined.</p>
-            <button class="btn btn-secondary" style="width: 100%; justify-content: center;">Preview Structure</button>
-          </div>
-        </article>
+            <div class="card-meta">
+              <span>SaaS Landing</span>
+              <span>•</span>
+              <span>Grid Layout</span>
+            </div>
+            <h3>Nexus SaaS Kit</h3>
+            <p>Complete landing page structure with pricing tables, feature grids, and testimonial sliders optimized for Flexbox.</p>
+            <div class="flex justify-between" style="margin-top: 1.5rem;">
+              <span class="card-price">$49</span>
+              <button class="btn btn-primary" aria-label="Purchase Nexus SaaS Kit">Purchase</button>
+            </div>
+          </article>
 
-        <!-- Template 2 -->
-        <article class="card" style="padding: 0; overflow: hidden;">
-          <div style="height: 200px; background: #1f2937; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color);">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 0 1-8 0"/>
-            </svg>
-          </div>
-          <div style="padding: 1.5rem;">
-            <div class="flex justify-between">
-              <h3>E-Commerce Scale</h3>
-              <span style="background: rgba(56, 189, 248, 0.1); color: var(--accent-primary); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">$49</span>
+          <!-- Product 2 -->
+          <article class="card">
+            <div class="card-image">
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                <rect x="25" y="20" width="50" height="70" rx="4" stroke="#4f46e5" stroke-width="2"/>
+                <circle cx="50" cy="80" r="3" fill="#4f46e5"/>
+              </svg>
             </div>
-            <p>Optimized for CLS. Includes gallery grid, sticky cart, and checkout flow skeleton.</p>
-            <button class="btn btn-secondary" style="width: 100%; justify-content: center;">Preview Structure</button>
-          </div>
-        </article>
+            <div class="card-meta">
+              <span>Mobile First</span>
+              <span>•</span>
+              <span>App Interface</span>
+            </div>
+            <h3>Flux App Dashboard</h3>
+            <p>Complex dashboard layout with sidebar navigation, data visualization containers, and user settings forms.</p>
+            <div class="flex justify-between" style="margin-top: 1.5rem;">
+              <span class="card-price">$59</span>
+              <button class="btn btn-primary" aria-label="Purchase Flux App Dashboard">Purchase</button>
+            </div>
+          </article>
 
-        <!-- Template 3 -->
-        <article class="card" style="padding: 0; overflow: hidden;">
-          <div style="height: 200px; background: #1f2937; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color);">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="1">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-              <polyline points="2 17 12 22 22 17"/>
-              <polyline points="2 12 12 17 22 12"/>
-            </svg>
-          </div>
-          <div style="padding: 1.5rem;">
-            <div class="flex justify-between">
-              <h3>Landing Page Conversion</h3>
-              <span style="background: rgba(56, 189, 248, 0.1); color: var(--accent-primary); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">$29</span>
+          <!-- Product 3 -->
+          <article class="card">
+            <div class="card-image">
+              <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+                <path d="M20 30h60v40H20z" stroke="#4f46e5" stroke-width="2"/>
+                <path d="M20 30l30 20 30-20" stroke="#4f46e5" stroke-width="2"/>
+              </svg>
             </div>
-            <p>High-contrast hero, feature grid, and pricing table. Accessibility focused.</p>
-            <button class="btn btn-secondary" style="width: 100%; justify-content: center;">Preview Structure</button>
-          </div>
-        </article>
+            <div class="card-meta">
+              <span>Marketing</span>
+              <span>•</span>
+              <span>Conversion Focus</span>
+            </div>
+            <h3>Velocity Email Set</h3>
+            <p>Table-based HTML structures that actually work in Outlook, pre-tested for AI content injection.</p>
+            <div class="flex justify-between" style="margin-top: 1.5rem;">
+              <span class="card-price">$29</span>
+              <button class="btn btn-primary" aria-label="Purchase Velocity Email Set">Purchase</button>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- PRICING -->
-    <section id="pricing" class="container mt-4">
-      <div class="card" style="text-align: center; max-width: 600px; margin: 0 auto; border-color: var(--accent-primary);">
-        <h2 class="gradient-text">Full Access Bundle</h2>
-        <div style="font-size: 3rem; font-weight: 800; margin: 1rem 0;">$149</div>
-        <p>Get lifetime access to all 25+ LLM-optimized templates, plus the "Prompting Guide for Web Dev" ebook.</p>
-        <ul style="text-align: left; margin: 2rem 0; list-style: none; padding: 0;">
-          <li style="margin-bottom: 0.5rem; display: flex; gap: 0.5rem; color: var(--text-secondary);">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            25+ Premium Templates (HTML/React/Vue)
-          </li>
-          <li style="margin-bottom: 0.5rem; display: flex; gap: 0.5rem; color: var(--text-secondary);">
-             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            System Prompts for Claude & ChatGPT
-          </li>
-          <li style="margin-bottom: 0.5rem; display: flex; gap: 0.5rem; color: var(--text-secondary);">
-             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-            Lifetime Updates
-          </li>
-        </ul>
-        <a href="#" class="btn btn-primary" style="width: 100%; justify-content: center;">Get Access Now</a>
-        <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-muted);">Secure payment via Stripe. 14-day money-back guarantee.</p>
+    <!-- TRUST SECTION -->
+    <section class="container" style="text-align: center; margin-bottom: 6rem;">
+      <h2 style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 2rem;">Powering the next generation of AI-built software</h2>
+      <div class="flex" style="justify-content: center; gap: 3rem; flex-wrap: wrap; opacity: 0.6;">
+        <!-- SVGs of generic tech logos -->
+        <svg width="120" height="40" viewBox="0 0 120 40" fill="currentColor">
+          <rect y="15" width="20" height="10" rx="2"/>
+          <text x="30" y="24" font-family="sans-serif" font-weight="bold" font-size="18">TECHNO</text>
+        </svg>
+        <svg width="120" height="40" viewBox="0 0 120 40" fill="currentColor">
+          <circle cx="10" cy="20" r="8"/>
+          <text x="30" y="24" font-family="sans-serif" font-weight="bold" font-size="18">ORBIT</text>
+        </svg>
+        <svg width="120" height="40" viewBox="0 0 120 40" fill="currentColor">
+          <path d="M0 20l10-10 10 10-10 10z"/>
+          <text x="30" y="24" font-family="sans-serif" font-weight="bold" font-size="18">VERTEX</text>
+        </svg>
       </div>
     </section>
 
   </main>
 
-  <footer class="container">
-    <div class="grid grid-3">
-      <div>
-        <div class="logo" style="margin-bottom: 1rem;">PromptFrame</div>
-        <p style="font-size: 0.9rem; color: var(--text-secondary);">
-          The first template marketplace designed for the AI era.
-          Built by developers, for developers using LLMs.
-        </p>
-      </div>
-      <div>
-        <h3>Product</h3>
-        <div class="flex flex-col gap-4">
-          <a href="#" style="color: var(--text-secondary); text-decoration: none;">Templates</a>
-          <a href="#" style="color: var(--text-secondary); text-decoration: none;">Prompt Guide</a>
-          <a href="#" style="color: var(--text-secondary); text-decoration: none;">Changelog</a>
+  <footer>
+    <div class="container">
+      <div class="grid grid-3" style="margin-bottom: 3rem;">
+        <div>
+          <a href="/" class="logo" style="margin-bottom: 1rem;">PromptUI</a>
+          <p>Standardizing the interface between human intent and AI generation.</p>
+        </div>
+        <div>
+          <h3 style="color: white; margin-bottom: 1rem;">Product</h3>
+          <div class="flex flex-col" style="align-items: flex-start; gap: 0.5rem;">
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">All Templates</a>
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Prompt Builder</a>
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Documentation</a>
+          </div>
+        </div>
+        <div>
+          <h3 style="color: white; margin-bottom: 1rem;">Legal</h3>
+          <div class="flex flex-col" style="align-items: flex-start; gap: 0.5rem;">
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">License</a>
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Privacy Policy</a>
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Terms of Service</a>
+          </div>
         </div>
       </div>
-      <div>
-        <h3>Legal</h3>
-        <div class="flex flex-col gap-4">
-          <a href="#" style="color: var(--text-secondary); text-decoration: none;">License</a>
-          <a href="#" style="color: var(--text-secondary); text-decoration: none;">Privacy Policy</a>
-          <a href="#" style="color: var(--text-secondary); text-decoration: none;">Terms of Service</a>
-        </div>
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 2rem; text-align: center;">
+        &copy; 2023-2024 PromptUI. All rights reserved.
       </div>
-    </div>
-    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.8rem; color: var(--text-muted);">
-      &copy; 2024 PromptFrame. All rights reserved.
     </div>
   </footer>
 
   <!-- 
-  PERFORMANCE SCRIPT 
-  Simple interaction logic. 
-  Note: In a strict production environment with 'unsafe-inline' disabled, 
-  this would be in an external file or have a sha-384 hash calculated.
+  SCRIPT LOADING STRATEGY
+  Deferred loading to prevent render blocking.
+  CSP Note: If using strict CSP in production, calculate hash of this block.
   -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Smooth scroll behavior for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth'
-            });
-            // Update focus for accessibility
-            target.setAttribute('tabindex', '-1');
-            target.focus();
-          }
+      console.log('PromptUI: Optimized for LLM consumption.');
+      
+      // Interaction Logic for Buttons (Demo)
+      const buttons = document.querySelectorAll('button');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const originalText = e.target.innerText;
+          e.target.innerText = 'Redirecting...';
+          e.target.style.opacity = '0.7';
+          setTimeout(() => {
+            e.target.innerText = originalText;
+            e.target.style.opacity = '1';
+            alert('This would redirect to the secure checkout stripe page.');
+          }, 800);
         });
       });
+      
+      // Reduced Motion Check
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (mediaQuery.matches) {
+        document.documentElement.style.scrollBehavior = 'auto';
+      }
     });
   </script>
 </body>
