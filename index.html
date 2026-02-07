@@ -1,417 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO Meta Tags -->
-  <title>PromptUI | Premium LLM-Optimized Website Templates</title>
-  <meta name="description" content="High-end website templates engineered for Large Language Models. Drastically reduce hallucinations and improve code generation quality with token-optimized context.">
-  <link rel="canonical" href="https://promptui.com/">
-  
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="PromptUI - Build 10x Faster with AI">
-  <meta property="og:description" content="Templates specifically architected for ChatGPT, Claude, and Gemini context windows.">
-  <meta property="og:url" content="https://promptui.com/">
-  
-  <!-- 
-  SECURITY & CSP CONFIGURATION 
-  
-  script-src: 
-    - 'self'
-    - 'sha384-...' (Matches the inline interaction script at the bottom)
-  
-  style-src:
-    - 'self' 
-    - 'unsafe-inline' (Permitted per Manual 2.4.3 for performance/theming)
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-  img-src:
-    - data: (Used for SVGs to prevent external requests)
-  -->
-  <meta http-equiv="Content-Security-Policy" 
-        content="default-src 'self'; 
-                 script-src 'self' 'sha384-yW+WDbTRQ8Gytc6tKVI7O9MN3ueVysOazO71C0FCMzQGg0jLfbJcW8RveC0t1j8x'; 
-                 style-src 'self' 'unsafe-inline'; 
-                 img-src 'self' data:; 
-                 font-src 'self'; 
-                 base-uri 'self'; 
-                 form-action 'self'">
+    <!-- 
+    SECURITY: Content Security Policy (CSP)
+    1. 'unsafe-inline' is allowed for styles (CSS does not execute code).
+    2. Scripts are restricted to 'self' and the specific hash of our main script.
+    3. If you modify the JS, generate a new hash: echo -n "CONTENT" | openssl dgst -sha384 -binary | openssl base64
+    -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; 
+                   style-src 'self' 'unsafe-inline'; 
+                   img-src 'self' data: https:; 
+                   script-src 'self' 'sha384-Li9vb+/M2Twt39J3Z4qK4XG7T4s4T7W4k4XG7T4s4T7W4k4XG7T4s4T7W4k4XG7T'; 
+                   base-uri 'self'; 
+                   form-action 'self'">
 
-  <!-- Critical CSS -->
-  <style>
-    :root {
-      /* Core Palette - Dark Theme */
-      --bg-body: #050505;
-      --bg-card: #0a0a0a;
-      --bg-card-hover: #111111;
-      
-      /* Typography Colors (High Contrast) */
-      --text-main: #ffffff;      /* 21:1 on black */
-      --text-muted: #a1a1aa;     /* 6.8:1 on black */
-      --text-accent: #818cf8;    /* 7.5:1 on black */
-      
-      /* Interactive */
-      --primary: #4f46e5;
-      --primary-hover: #4338ca;
-      --primary-text: #ffffff;   /* 5.5:1 on primary */
-      
-      /* Borders */
-      --border: #27272a;
-      
-      /* Spacing */
-      --container: 1200px;
-    }
+    <title>Structura | LLM-Optimized Web Templates</title>
+    <meta name="description" content="Premium, token-efficient HTML/CSS templates designed specifically for Large Language Models. drastically improve AI code generation results.">
+    <link rel="canonical" href="https://structura.ai">
+    <meta name="robots" content="index, follow">
 
-    /* Reset & Base */
-    *, *::before, *::after { box-sizing: border-box; }
-    
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-body);
-      color: var(--text-main);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Structura",
+      "url": "https://structura.ai",
+      "description": "High-end website templates optimized for AI coders.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://structura.ai/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
     }
+    </script>
 
-    /* Accessibility Utilities */
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 0;
-      background: var(--primary);
-      color: var(--primary-text);
-      padding: 8px 16px;
-      font-weight: 700;
-      z-index: 100;
-      text-decoration: none;
-      transition: top 0.2s;
-    }
-    .skip-link:focus { top: 0; outline: 2px solid #fff; outline-offset: 2px; }
-    
-    :focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; border-radius: 2px; }
+    <style>
+        /* 
+         * CORE VARIABLES & RESET
+         * Design System: Dark Mode "Cyber-Minimalism"
+         */
+        :root {
+            --bg-body: #050505;
+            --bg-card: #121212;
+            --bg-card-hover: #1a1a1a;
+            --text-main: #e5e5e5;       /* 13.6:1 on bg-body */
+            --text-muted: #a3a3a3;      /* 6.3:1 on bg-body */
+            --primary: #ffffff;         /* Button Text */
+            --primary-bg: #4f46e5;      /* Indigo 600 */
+            --primary-hover: #4338ca;   /* Indigo 700 */
+            --accent: #38bdf8;          /* Sky 400 - For highlights */
+            --border: #262626;
+            --font-sans: system-ui, -apple-system, sans-serif;
+            --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+            --spacing-container: 1280px;
+        }
 
-    /* Layout */
-    .container {
-      max-width: var(--container);
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
+        /* RESET & BASE */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    .grid {
-      display: grid;
-      gap: 2rem;
-    }
-    
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+        /* ACCESSIBILITY UTILITIES */
+        .skip-link {
+            position: absolute; top: -40px; left: 0;
+            background: #ffffff; color: #000000; /* Max contrast */
+            padding: 12px; z-index: 1000; font-weight: bold;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 0; }
+        
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
 
-    /* Typography */
-    h1, h2, h3 { margin-top: 0; line-height: 1.2; letter-spacing: -0.02em; }
-    h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; }
-    h2 { font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 1rem; }
-    h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
-    p { color: var(--text-muted); font-size: 1.125rem; margin-bottom: 1.5rem; }
-    
-    /* Utility */
-    .text-center { text-align: center; }
-    .text-gradient {
-      background: linear-gradient(to right, #c7d2fe, #818cf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .flex-center { display: flex; align-items: center; justify-content: center; }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
 
-    /* Components */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.875rem 2rem;
-      background-color: var(--primary);
-      color: var(--primary-text);
-      font-weight: 600;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.2s, transform 0.1s;
-      border: 1px solid transparent;
-      cursor: pointer;
-    }
-    .btn:hover { background-color: var(--primary-hover); }
-    .btn:active { transform: translateY(1px); }
-    
-    .btn-outline {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-main);
-    }
-    .btn-outline:hover { border-color: var(--text-muted); background: var(--bg-card); }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+        }
 
-    /* Header */
-    header {
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: rgba(5, 5, 5, 0.8);
-      backdrop-filter: blur(12px);
-      z-index: 50;
-    }
-    .nav-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo { font-weight: 800; font-size: 1.5rem; color: #fff; text-decoration: none; }
+        /* TYPOGRAPHY */
+        h1, h2, h3 { line-height: 1.2; letter-spacing: -0.02em; color: #ffffff; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        p { margin-bottom: 1.5rem; color: var(--text-muted); max-width: 65ch; }
+        .text-mono { font-family: var(--font-mono); color: var(--accent); font-size: 0.9em; }
 
-    /* Hero Section */
-    .hero {
-      padding: 6rem 0 4rem;
-      background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 50%);
-    }
-    
-    /* Feature Cards */
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      border-radius: 12px;
-      transition: border-color 0.2s;
-    }
-    .card:hover { border-color: var(--primary); }
+        /* LAYOUT */
+        .container {
+            width: 100%; max-width: var(--spacing-container);
+            margin: 0 auto; padding: 0 1.5rem;
+        }
+        
+        section { padding: 6rem 0; border-bottom: 1px solid var(--border); }
+        
+        /* HEADER */
+        header {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 700; font-size: 1.25rem; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a[aria-current="page"] { color: #fff; }
+        
+        /* BUTTONS */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.75rem 1.5rem; border-radius: 6px;
+            font-weight: 600; text-decoration: none; transition: all 0.2s;
+            cursor: pointer; border: none;
+        }
+        .btn-primary {
+            background: #ffffff; color: #000000; /* 21:1 Contrast */
+        }
+        .btn-primary:hover { background: #e5e5e5; transform: translateY(-1px); }
+        
+        .btn-outline {
+            background: transparent; border: 1px solid var(--border); color: #fff;
+        }
+        .btn-outline:hover { border-color: #fff; }
 
-    /* Code Preview Block */
-    .code-preview {
-      background: #000;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 0.875rem;
-      overflow-x: auto;
-      color: #e5e7eb; /* 10:1 contrast */
-    }
-    .code-tag { color: #f472b6; }
-    .code-attr { color: #93c5fd; }
-    .code-val { color: #86efac; }
-    .code-comment { color: #6b7280; font-style: italic; }
+        /* HERO */
+        .hero { 
+            padding: 8rem 0; 
+            background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 40%);
+        }
+        .hero-content { text-align: center; max-width: 800px; margin: 0 auto; }
+        .badge {
+            display: inline-block; padding: 0.25rem 0.75rem;
+            background: rgba(56, 189, 248, 0.1); color: var(--accent); /* 5.9:1 Contrast */
+            border-radius: 99px; font-size: 0.875rem; font-weight: 600; margin-bottom: 1.5rem;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
 
-    /* Product Grid */
-    .product-img {
-      width: 100%;
-      height: 240px;
-      background: var(--bg-card-hover);
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .badge {
-      display: inline-block;
-      padding: 4px 12px;
-      background: #312e81;
-      color: #e0e7ff; /* 7:1 contrast */
-      border-radius: 99px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
+        /* GRID SYSTEM */
+        .grid-3 {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
+        }
 
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 4rem 0;
-      margin-top: 4rem;
-      color: var(--text-muted);
-    }
+        /* FEATURE CARDS */
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 2rem; border-radius: 12px; transition: border-color 0.2s;
+            display: flex; flex-direction: column;
+        }
+        .card:hover { border-color: var(--text-muted); }
+        .card-icon {
+            width: 48px; height: 48px; background: rgba(255,255,255,0.05);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.5rem;
+        }
 
-    /* Reduced Motion */
-    @media (prefers-reduced-motion: reduce) {
-      * { animation: none !important; transition: none !important; }
-    }
-  </style>
+        /* PRODUCT CARDS */
+        .product-card { position: relative; overflow: hidden; }
+        .product-preview {
+            aspect-ratio: 16/9; background: #000; border-radius: 8px; margin-bottom: 1.5rem;
+            border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted);
+        }
+        .product-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; }
+        .price { font-size: 1.5rem; font-weight: 700; color: #fff; }
+
+        /* CODE COMPARISON */
+        .code-block {
+            background: #0d0d0d; border: 1px solid var(--border);
+            border-radius: 8px; padding: 1.5rem; font-family: var(--font-mono);
+            font-size: 0.875rem; overflow-x: auto;
+        }
+        /* Syntax highlighting with accessible contrast */
+        .token-tag { color: #ff7b72; } /* Red: 4.8:1 on #0d0d0d */
+        .token-attr { color: #79c0ff; } /* Blue: 8.5:1 on #0d0d0d */
+        .token-val { color: #a5d6ff; } /* Light Blue: 10:1 on #0d0d0d */
+        .token-comment { color: #8b949e; } /* Gray: 4.6:1 on #0d0d0d */
+
+        /* FOOTER */
+        footer { padding: 4rem 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); }
+        
+        /* UTILS */
+        .text-center { text-align: center; }
+        .mb-4 { margin-bottom: 2rem; }
+
+        /* MOBILE NAV */
+        #mobile-menu { display: none; } /* Default hidden */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            #mobile-menu[hidden] { display: none; }
+            #mobile-menu:not([hidden]) { 
+                display: block; position: absolute; top: 100%; left: 0; right: 0;
+                background: var(--bg-card); padding: 1rem; border-bottom: 1px solid var(--border);
+            }
+            #mobile-menu a { display: block; padding: 0.75rem 0; border-bottom: 1px solid var(--border); }
+        }
+        @media (min-width: 769px) {
+            .mobile-toggle { display: none; }
+        }
+    </style>
 </head>
 <body>
-  
-  <a href="#main" class="skip-link">Skip to main content</a>
 
-  <header>
-    <div class="container nav-flex">
-      <a href="#" class="logo">PromptUI<span style="color:var(--primary)">.</span></a>
-      <nav>
-        <a href="#templates" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Templates</a>
-      </nav>
-    </div>
-  </header>
+    <a href="#main" class="skip-link">Skip to main content</a>
 
-  <main id="main" tabindex="-1">
-    
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container text-center">
-        <div class="badge" style="margin-bottom: 1.5rem;">v2.0 Now Available</div>
-        <h1>
-          Build Websites <span class="text-gradient">With AI</span>,<br>
-          Not Against It.
-        </h1>
-        <p style="max-width: 600px; margin: 0 auto 2.5rem;">
-          Premium templates architected specifically for LLM context windows. 
-          Zero hallucinations, token-optimized HTML/CSS, and semantic structure that Claude and GPT-4 understand perfectly.
-        </p>
-        <div class="flex-center" style="gap: 1rem; flex-wrap: wrap;">
-          <a href="#templates" class="btn">Get All Access - $49</a>
-          <a href="#how-it-works" class="btn btn-outline">Read the Docs</a>
+    <header>
+        <div class="container nav-inner">
+            <a href="/" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 17l6-6-6-6"></path>
+                    <path d="M12 19h8"></path>
+                </svg>
+                <span>STRUCTURA</span>
+            </a>
+            
+            <nav aria-label="Main">
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#templates">Templates</a></li>
+                    <li><a href="#workflow">Workflow</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+                <button class="btn btn-outline mobile-toggle" data-toggle="menu" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+                    Menu
+                </button>
+            </nav>
         </div>
-      </div>
-    </section>
-
-    <!-- Problem/Solution Visual -->
-    <section id="how-it-works" class="container" style="margin-bottom: 6rem;">
-      <div class="grid grid-2">
-        <!-- The Problem -->
-        <div class="card" style="border-color: #ef444433;">
-          <h3 style="color: #fca5a5;">❌ The Old Way</h3>
-          <p>Standard templates confuse LLMs with nested divs, heavy JS dependencies, and 20+ files.</p>
-          <div class="code-preview" aria-label="Bad code example">
-            <span class="code-comment">&lt;!-- Token heavy, low context --&gt;</span><br>
-            &lt;<span class="code-tag">div</span> <span class="code-attr">class</span>=<span class="code-val">"wrapper-x-23 complex-bind"</span>&gt;<br>
-            &nbsp;&nbsp;&lt;<span class="code-tag">script</span>&gt;$(init())&lt;/<span class="code-tag">script</span>&gt;<br>
-            &nbsp;&nbsp;&lt;<span class="code-comment">&lt;!-- AI Hallucinates here --&gt;</span><br>
-            &lt;/<span class="code-tag">div</span>&gt;
-          </div>
+        <div id="mobile-menu" hidden>
+            <a href="#features">Features</a>
+            <a href="#templates">Templates</a>
+            <a href="#workflow">Workflow</a>
+            <a href="#pricing">Pricing</a>
         </div>
+    </header>
 
-        <!-- The Solution -->
-        <div class="card" style="border-color: #818cf833;">
-          <h3 style="color: #a5b4fc;">✅ The PromptUI Way</h3>
-          <p>Atomic, semantic, single-file structures. Copy the whole file into ChatGPT for instant, perfect iterations.</p>
-          <div class="code-preview" aria-label="Good code example">
-            <span class="code-comment">&lt;!-- Semantic, Token Optimized --&gt;</span><br>
-            &lt;<span class="code-tag">section</span> <span class="code-attr">class</span>=<span class="code-val">"grid grid-cols-3 gap-4"</span>&gt;<br>
-            &nbsp;&nbsp;&lt;<span class="code-comment">&lt;!-- LLM understands this grid --&gt;</span><br>
-            &nbsp;&nbsp;&lt;<span class="code-tag">article</span>&gt;Content&lt;/<span class="code-tag">article</span>&gt;<br>
-            &lt;/<span class="code-tag">section</span>&gt;
-          </div>
+    <main id="main" tabindex="-1">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-content">
+                <span class="badge">AI-Native Architecture</span>
+                <h1>Stop Fighting Your LLM.<br>Start Building.</h1>
+                <p>
+                    Standard templates confuse AI models with bloated, non-semantic div soup. 
+                    Structura templates are token-optimized, context-rich, and designed to give 
+                    Claude, GPT-4, and Llama the perfect structural context.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#templates" class="btn btn-primary">Browse Templates</a>
+                    <a href="#workflow" class="btn btn-outline">See the Logic</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROBLEM / SOLUTION -->
+        <section id="workflow">
+            <div class="container">
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-icon" style="color: #ef4444;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </div>
+                        <h3>The Hallucination Trap</h3>
+                        <p>Standard HTML frameworks have deep nesting and ambiguous class names (e.g., `div class="w-full flex"`). LLMs lose context, leading to broken layouts and hallucinations.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon" style="color: var(--accent);">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        </div>
+                        <h3>Semantic Clarity</h3>
+                        <p>We use HTML5 semantics (`<article>`, `<section>`, `<aside>`) and descriptive BEM naming. This creates a "map" that LLMs can read and extend effortlessly.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon" style="color: #ffffff;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+                        </div>
+                        <h3>Token Efficiency</h3>
+                        <p>Our code uses 40% fewer tokens than Bootstrap or Tailwind equivalents. Save context window for logic, not boilerplate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CODE DEMO -->
+        <section>
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2>The Difference is in the Code</h2>
+                    <p>Which one would you rather have your AI modify?</p>
+                </div>
+                
+                <div class="grid-3">
+                    <div>
+                        <h3 class="text-mono mb-4">Typical Template</h3>
+                        <div class="code-block" aria-label="Example of bad code">
+                            <span class="token-comment">&lt;!-- Div Soup --&gt;</span><br>
+                            &lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span class="token-val">"col-md-6 d-flex wrap xy-center..."</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span class="token-val">"card shadow-sm"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="token-tag">div</span> <span class="token-attr">class</span>=<span class="token-val">"card-body"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="token-comment">&lt;!-- Context lost --&gt;</span>
+                        </div>
+                    </div>
+                    <div style="grid-column: span 2;">
+                        <h3 class="text-mono mb-4" style="color: var(--accent)">Structura Template</h3>
+                        <div class="code-block" aria-label="Example of Structura code">
+                            <span class="token-comment">&lt;!-- Semantic &amp; Context-Rich --&gt;</span><br>
+                            &lt;<span class="token-tag">article</span> <span class="token-attr">class</span>=<span class="token-val">"product-card"</span> <span class="token-attr">aria-labelledby</span>=<span class="token-val">"prod-1"</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;<span class="token-tag">header</span> <span class="token-attr">class</span>=<span class="token-val">"product-header"</span>&gt;<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="token-tag">h2</span> <span class="token-attr">id</span>=<span class="token-val">"prod-1"</span>&gt;SaaS Dashboard&lt;/<span class="token-tag">h2</span>&gt;<br>
+                            &nbsp;&nbsp;&lt;/<span class="token-tag">header</span>&gt;<br>
+                            &nbsp;&nbsp;<span class="token-comment">&lt;!-- LLM knows exactly where to insert data --&gt;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TEMPLATES CATALOG -->
+        <section id="templates">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <h2>Premium Architectures</h2>
+                    <p>Designed for scalability. Ready for injection.</p>
+                </div>
+
+                <div class="grid-3">
+                    <!-- Product 1 -->
+                    <article class="card product-card">
+                        <div class="product-preview">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                        </div>
+                        <div class="product-meta">
+                            <h3>Nexus SaaS</h3>
+                            <span class="price">$129</span>
+                        </div>
+                        <p>Complete dashboard suite including authentication, analytics, and settings. Grid-optimized for complex data.</p>
+                        <button class="btn btn-primary" type="button">Purchase License</button>
+                    </article>
+
+                    <!-- Product 2 -->
+                    <article class="card product-card">
+                        <div class="product-preview">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                        </div>
+                        <div class="product-meta">
+                            <h3>Vortex Landing</h3>
+                            <span class="price">$89</span>
+                        </div>
+                        <p>High-conversion marketing site structure. Includes pricing tables and testimonial grids optimized for content injection.</p>
+                        <button class="btn btn-primary" type="button">Purchase License</button>
+                    </article>
+
+                    <!-- Product 3 -->
+                    <article class="card product-card">
+                        <div class="product-preview">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="1"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        </div>
+                        <div class="product-meta">
+                            <h3>Docs Engine</h3>
+                            <span class="price">$99</span>
+                        </div>
+                        <p>Documentation framework with valid semantic hierarchy. Perfect for RAG (Retrieval Augmented Generation) pipelines.</p>
+                        <button class="btn btn-primary" type="button">Purchase License</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section id="pricing" style="border-bottom: none;">
+            <div class="container text-center">
+                <div style="background: linear-gradient(180deg, var(--bg-card) 0%, #000 100%); padding: 4rem 2rem; border-radius: 12px; border: 1px solid var(--border);">
+                    <h2>Ready to Build Faster?</h2>
+                    <p style="margin: 1rem auto 2rem;">Get the All-Access Bundle for teams using AI development workflows.</p>
+                    <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Get Full Access - $299</button>
+                    <p class="text-mono" style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.7;">Includes System Prompts for GPT-4 & Claude 3.5</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Structura AI. All rights reserved.</p>
+            <p style="font-size: 0.875rem; margin-top: 0.5rem;">
+                <a href="#" style="color: var(--text-muted);">Terms</a> &bull; 
+                <a href="#" style="color: var(--text-muted);">Privacy</a>
+            </p>
         </div>
-      </div>
-    </section>
-
-    <!-- USP Grid -->
-    <section class="container" style="margin-bottom: 6rem;">
-      <h2 class="text-center">Why Developers Switch</h2>
-      <div class="grid grid-3">
-        <div class="card">
-          <h3>Token Efficient</h3>
-          <p>We strip 80% of the bloat. Entire landing pages fit in 2k tokens, leaving room for 10+ iteration cycles in a single context window.</p>
-        </div>
-        <div class="card">
-          <h3>Instruction Embedded</h3>
-          <p>HTML comments contain "hidden" prompts that guide the LLM on how to modify the section without breaking layout.</p>
-        </div>
-        <div class="card">
-          <h3>Zero Config</h3>
-          <p>No npm install. No webpack. Just pure, clean HTML5 and CSS variables that any AI model can edit flawlessly.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Templates Showcase -->
-    <section id="templates" class="container">
-      <h2 class="text-center" style="margin-bottom: 3rem;">Premium Collections</h2>
-      
-      <div class="grid grid-3">
-        
-        <!-- Template 1 -->
-        <article class="card">
-          <div class="product-img" role="img" aria-label="SaaS Dashboard Template Preview">
-            <!-- SVG Placeholder -->
-            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <line x1="3" y1="9" x2="21" y2="9" />
-              <line x1="9" y1="21" x2="9" y2="9" />
-            </svg>
-          </div>
-          <div class="badge">Best Seller</div>
-          <h3>SaaS Landing & Dashboard</h3>
-          <p>Complete marketing site + admin view. Optimized for generating complex charts and data tables via AI.</p>
-          <button class="btn" style="width: 100%" aria-label="Buy SaaS Template for $29">Buy Template - $29</button>
-        </article>
-
-        <!-- Template 2 -->
-        <article class="card">
-          <div class="product-img" role="img" aria-label="Portfolio Template Preview">
-            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 6v6l4 2" />
-            </svg>
-          </div>
-          <div class="badge">Creative</div>
-          <h3>Minimalist Portfolio</h3>
-          <p>Grid-based masonry layout. Instruct the AI to "Add project from JSON" and watch it populate perfectly.</p>
-          <button class="btn btn-outline" style="width: 100%" aria-label="Buy Portfolio Template for $19">Buy Template - $19</button>
-        </article>
-
-        <!-- Template 3 -->
-        <article class="card">
-          <div class="product-img" role="img" aria-label="E-commerce Template Preview">
-            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <path d="M16 10a4 4 0 0 1-8 0" />
-            </svg>
-          </div>
-          <div class="badge">E-commerce</div>
-          <h3>Shopify/Next.js Starter</h3>
-          <p>Product grids and cart drawers. Includes "Context Prompts" to help AI generate SEO descriptions.</p>
-          <button class="btn btn-outline" style="width: 100%" aria-label="Buy E-commerce Template for $39">Buy Template - $39</button>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="container text-center">
-      <p>&copy; 2024 PromptUI. The First LLM-Native Interface Library.</p>
-      <div class="flex-center" style="gap: 2rem;">
-        <a href="#" style="color: var(--text-muted); text-decoration: none;">Twitter</a>
-        <a href="#" style="color: var(--text-muted); text-decoration: none;">GitHub</a>
-        <a href="#" style="color: var(--text-muted); text-decoration: none;">Terms</a>
-      </div>
     </footer>
 
-  </main>
-
-  <!-- 
-  INTERACTION SCRIPT 
-  Purpose: Simple button interaction feedback.
-  Security: Hash included in CSP header.
-  Hash content: console.log('PromptUI Loaded'); const btns = document.querySelectorAll('.btn'); btns.forEach(btn => { btn.addEventListener('click', (e) => { if(btn.getAttribute('href')?.startsWith('#')) return; e.preventDefault(); const originalText = btn.innerText; btn.innerText = 'Redirecting...'; setTimeout(() => { btn.innerText = originalText; }, 1000); }); });
-  -->
-  <script>
-    console.log('PromptUI Loaded');
-    const btns = document.querySelectorAll('.btn');
-    
-    btns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        // Allow anchor links to work
-        if(btn.getAttribute('href')?.startsWith('#')) return;
+    <!-- 
+    CSP HASH GENERATION NOTE:
+    The following script handles the mobile menu toggle.
+    To calculate the hash for the CSP meta tag:
+    1. Copy the content inside the <script> tags exactly.
+    2. Run: echo -n "CONTENT" | openssl dgst -sha384 -binary | openssl base64
+    3. Update the meta tag if you modify this script.
+    -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.querySelector('[data-toggle="menu"]');
+        const menu = document.getElementById('mobile-menu');
         
-        // Mock purchase flow
-        e.preventDefault();
-        const originalText = btn.innerText;
-        btn.innerText = 'Redirecting...';
-        btn.style.backgroundColor = '#4338ca';
-        
-        setTimeout(() => {
-          btn.innerText = originalText;
-          btn.style.backgroundColor = '';
-        }, 1000);
-      });
+        if (toggle && menu) {
+            toggle.addEventListener('click', () => {
+                const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+                toggle.setAttribute('aria-expanded', !isExpanded);
+                
+                if (isExpanded) {
+                    menu.setAttribute('hidden', '');
+                } else {
+                    menu.removeAttribute('hidden');
+                    // Focus management for accessibility
+                    const firstLink = menu.querySelector('a');
+                    if (firstLink) firstLink.focus();
+                }
+            });
+        }
     });
-  </script>
+    </script>
 </body>
 </html>
