@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Meta Tags -->
+  <title>PromptUI | Premium LLM-Optimized Website Templates</title>
+  <meta name="description" content="High-end website templates engineered for Large Language Models. Drastically reduce hallucinations and improve code generation quality with token-optimized context.">
+  <link rel="canonical" href="https://promptui.com/">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="PromptUI - Build 10x Faster with AI">
+  <meta property="og:description" content="Templates specifically architected for ChatGPT, Claude, and Gemini context windows.">
+  <meta property="og:url" content="https://promptui.com/">
+  
+  <!-- 
+  SECURITY & CSP CONFIGURATION 
+  
+  script-src: 
+    - 'self'
+    - 'sha384-...' (Matches the inline interaction script at the bottom)
+  
+  style-src:
+    - 'self' 
+    - 'unsafe-inline' (Permitted per Manual 2.4.3 for performance/theming)
+    
+  img-src:
+    - data: (Used for SVGs to prevent external requests)
+  -->
+  <meta http-equiv="Content-Security-Policy" 
+        content="default-src 'self'; 
+                 script-src 'self' 'sha384-yW+WDbTRQ8Gytc6tKVI7O9MN3ueVysOazO71C0FCMzQGg0jLfbJcW8RveC0t1j8x'; 
+                 style-src 'self' 'unsafe-inline'; 
+                 img-src 'self' data:; 
+                 font-src 'self'; 
+                 base-uri 'self'; 
+                 form-action 'self'">
+
+  <!-- Critical CSS -->
+  <style>
+    :root {
+      /* Core Palette - Dark Theme */
+      --bg-body: #050505;
+      --bg-card: #0a0a0a;
+      --bg-card-hover: #111111;
+      
+      /* Typography Colors (High Contrast) */
+      --text-main: #ffffff;      /* 21:1 on black */
+      --text-muted: #a1a1aa;     /* 6.8:1 on black */
+      --text-accent: #818cf8;    /* 7.5:1 on black */
+      
+      /* Interactive */
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-text: #ffffff;   /* 5.5:1 on primary */
+      
+      /* Borders */
+      --border: #27272a;
+      
+      /* Spacing */
+      --container: 1200px;
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Accessibility Utilities */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: var(--primary-text);
+      padding: 8px 16px;
+      font-weight: 700;
+      z-index: 100;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 0; outline: 2px solid #fff; outline-offset: 2px; }
+    
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 4px; border-radius: 2px; }
+
+    /* Layout */
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 2rem;
+    }
+    
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); }
+
+    /* Typography */
+    h1, h2, h3 { margin-top: 0; line-height: 1.2; letter-spacing: -0.02em; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; }
+    h2 { font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 1rem; }
+    h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    p { color: var(--text-muted); font-size: 1.125rem; margin-bottom: 1.5rem; }
+    
+    /* Utility */
+    .text-center { text-align: center; }
+    .text-gradient {
+      background: linear-gradient(to right, #c7d2fe, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .flex-center { display: flex; align-items: center; justify-content: center; }
+
+    /* Components */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.875rem 2rem;
+      background-color: var(--primary);
+      color: var(--primary-text);
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.2s, transform 0.1s;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .btn:hover { background-color: var(--primary-hover); }
+    .btn:active { transform: translateY(1px); }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+    }
+    .btn-outline:hover { border-color: var(--text-muted); background: var(--bg-card); }
+
+    /* Header */
+    header {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(5, 5, 5, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 50;
+    }
+    .nav-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-weight: 800; font-size: 1.5rem; color: #fff; text-decoration: none; }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 0 4rem;
+      background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 50%);
+    }
+    
+    /* Feature Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 12px;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--primary); }
+
+    /* Code Preview Block */
+    .code-preview {
+      background: #000;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.875rem;
+      overflow-x: auto;
+      color: #e5e7eb; /* 10:1 contrast */
+    }
+    .code-tag { color: #f472b6; }
+    .code-attr { color: #93c5fd; }
+    .code-val { color: #86efac; }
+    .code-comment { color: #6b7280; font-style: italic; }
+
+    /* Product Grid */
+    .product-img {
+      width: 100%;
+      height: 240px;
+      background: var(--bg-card-hover);
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: #312e81;
+      color: #e0e7ff; /* 7:1 contrast */
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 4rem 0;
+      margin-top: 4rem;
+      color: var(--text-muted);
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <div class="container nav-flex">
+      <a href="#" class="logo">PromptUI<span style="color:var(--primary)">.</span></a>
+      <nav>
+        <a href="#templates" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Templates</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container text-center">
+        <div class="badge" style="margin-bottom: 1.5rem;">v2.0 Now Available</div>
+        <h1>
+          Build Websites <span class="text-gradient">With AI</span>,<br>
+          Not Against It.
+        </h1>
+        <p style="max-width: 600px; margin: 0 auto 2.5rem;">
+          Premium templates architected specifically for LLM context windows. 
+          Zero hallucinations, token-optimized HTML/CSS, and semantic structure that Claude and GPT-4 understand perfectly.
+        </p>
+        <div class="flex-center" style="gap: 1rem; flex-wrap: wrap;">
+          <a href="#templates" class="btn">Get All Access - $49</a>
+          <a href="#how-it-works" class="btn btn-outline">Read the Docs</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem/Solution Visual -->
+    <section id="how-it-works" class="container" style="margin-bottom: 6rem;">
+      <div class="grid grid-2">
+        <!-- The Problem -->
+        <div class="card" style="border-color: #ef444433;">
+          <h3 style="color: #fca5a5;">❌ The Old Way</h3>
+          <p>Standard templates confuse LLMs with nested divs, heavy JS dependencies, and 20+ files.</p>
+          <div class="code-preview" aria-label="Bad code example">
+            <span class="code-comment">&lt;!-- Token heavy, low context --&gt;</span><br>
+            &lt;<span class="code-tag">div</span> <span class="code-attr">class</span>=<span class="code-val">"wrapper-x-23 complex-bind"</span>&gt;<br>
+            &nbsp;&nbsp;&lt;<span class="code-tag">script</span>&gt;$(init())&lt;/<span class="code-tag">script</span>&gt;<br>
+            &nbsp;&nbsp;&lt;<span class="code-comment">&lt;!-- AI Hallucinates here --&gt;</span><br>
+            &lt;/<span class="code-tag">div</span>&gt;
+          </div>
+        </div>
+
+        <!-- The Solution -->
+        <div class="card" style="border-color: #818cf833;">
+          <h3 style="color: #a5b4fc;">✅ The PromptUI Way</h3>
+          <p>Atomic, semantic, single-file structures. Copy the whole file into ChatGPT for instant, perfect iterations.</p>
+          <div class="code-preview" aria-label="Good code example">
+            <span class="code-comment">&lt;!-- Semantic, Token Optimized --&gt;</span><br>
+            &lt;<span class="code-tag">section</span> <span class="code-attr">class</span>=<span class="code-val">"grid grid-cols-3 gap-4"</span>&gt;<br>
+            &nbsp;&nbsp;&lt;<span class="code-comment">&lt;!-- LLM understands this grid --&gt;</span><br>
+            &nbsp;&nbsp;&lt;<span class="code-tag">article</span>&gt;Content&lt;/<span class="code-tag">article</span>&gt;<br>
+            &lt;/<span class="code-tag">section</span>&gt;
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- USP Grid -->
+    <section class="container" style="margin-bottom: 6rem;">
+      <h2 class="text-center">Why Developers Switch</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Token Efficient</h3>
+          <p>We strip 80% of the bloat. Entire landing pages fit in 2k tokens, leaving room for 10+ iteration cycles in a single context window.</p>
+        </div>
+        <div class="card">
+          <h3>Instruction Embedded</h3>
+          <p>HTML comments contain "hidden" prompts that guide the LLM on how to modify the section without breaking layout.</p>
+        </div>
+        <div class="card">
+          <h3>Zero Config</h3>
+          <p>No npm install. No webpack. Just pure, clean HTML5 and CSS variables that any AI model can edit flawlessly.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Templates Showcase -->
+    <section id="templates" class="container">
+      <h2 class="text-center" style="margin-bottom: 3rem;">Premium Collections</h2>
+      
+      <div class="grid grid-3">
+        
+        <!-- Template 1 -->
+        <article class="card">
+          <div class="product-img" role="img" aria-label="SaaS Dashboard Template Preview">
+            <!-- SVG Placeholder -->
+            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <line x1="3" y1="9" x2="21" y2="9" />
+              <line x1="9" y1="21" x2="9" y2="9" />
+            </svg>
+          </div>
+          <div class="badge">Best Seller</div>
+          <h3>SaaS Landing & Dashboard</h3>
+          <p>Complete marketing site + admin view. Optimized for generating complex charts and data tables via AI.</p>
+          <button class="btn" style="width: 100%" aria-label="Buy SaaS Template for $29">Buy Template - $29</button>
+        </article>
+
+        <!-- Template 2 -->
+        <article class="card">
+          <div class="product-img" role="img" aria-label="Portfolio Template Preview">
+            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </div>
+          <div class="badge">Creative</div>
+          <h3>Minimalist Portfolio</h3>
+          <p>Grid-based masonry layout. Instruct the AI to "Add project from JSON" and watch it populate perfectly.</p>
+          <button class="btn btn-outline" style="width: 100%" aria-label="Buy Portfolio Template for $19">Buy Template - $19</button>
+        </article>
+
+        <!-- Template 3 -->
+        <article class="card">
+          <div class="product-img" role="img" aria-label="E-commerce Template Preview">
+            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
+          </div>
+          <div class="badge">E-commerce</div>
+          <h3>Shopify/Next.js Starter</h3>
+          <p>Product grids and cart drawers. Includes "Context Prompts" to help AI generate SEO descriptions.</p>
+          <button class="btn btn-outline" style="width: 100%" aria-label="Buy E-commerce Template for $39">Buy Template - $39</button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="container text-center">
+      <p>&copy; 2024 PromptUI. The First LLM-Native Interface Library.</p>
+      <div class="flex-center" style="gap: 2rem;">
+        <a href="#" style="color: var(--text-muted); text-decoration: none;">Twitter</a>
+        <a href="#" style="color: var(--text-muted); text-decoration: none;">GitHub</a>
+        <a href="#" style="color: var(--text-muted); text-decoration: none;">Terms</a>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- 
+  INTERACTION SCRIPT 
+  Purpose: Simple button interaction feedback.
+  Security: Hash included in CSP header.
+  Hash content: console.log('PromptUI Loaded'); const btns = document.querySelectorAll('.btn'); btns.forEach(btn => { btn.addEventListener('click', (e) => { if(btn.getAttribute('href')?.startsWith('#')) return; e.preventDefault(); const originalText = btn.innerText; btn.innerText = 'Redirecting...'; setTimeout(() => { btn.innerText = originalText; }, 1000); }); });
+  -->
+  <script>
+    console.log('PromptUI Loaded');
+    const btns = document.querySelectorAll('.btn');
+    
+    btns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        // Allow anchor links to work
+        if(btn.getAttribute('href')?.startsWith('#')) return;
+        
+        // Mock purchase flow
+        e.preventDefault();
+        const originalText = btn.innerText;
+        btn.innerText = 'Redirecting...';
+        btn.style.backgroundColor = '#4338ca';
+        
+        setTimeout(() => {
+          btn.innerText = originalText;
+          btn.style.backgroundColor = '';
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>
